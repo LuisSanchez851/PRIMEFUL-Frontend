@@ -1,8 +1,14 @@
 // src/types/cart.ts
-import type { Product } from "./product";
-
+export interface CartItemProduct {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  brand?: string;
+  variantId?: string;
+}
 export interface CartItem {
-  product: Product;
+  product: CartItemProduct;
   quantity: number;
 }
 

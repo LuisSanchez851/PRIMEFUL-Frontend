@@ -1,22 +1,20 @@
 // src/domain/cart/cart.utils.ts
-import type { Product } from "../../types/product";
-import type { CartItem, Cart } from "../../types/cart";
-
+import type { CartItem, Cart, CartItemProduct } from "../../types/cart";
 /**
- * Agrega un producto al carrito
+ * Agrega un producto (variante específica) al carrito
  */
 export function addToCart(
   items: CartItem[],
-  product: Product,
+  product: CartItemProduct,
   quantity: number = 1
 ): CartItem[] {
   const existingItem = items.find(
-    (item) => item.product.id === product.id
+    (item) => item.product.variantId === product.variantId
   );
 
   if (existingItem) {
     return items.map((item) =>
-      item.product.id === product.id
+      item.product.variantId === product.variantId
         ? { ...item, quantity: item.quantity + quantity }
         : item
     );
@@ -26,29 +24,31 @@ export function addToCart(
 }
 
 /**
- * Remueve un producto del carrito
+ * Remueve una variante específica del carrito
  */
 export function removeFromCart(
   items: CartItem[],
-  productId: string
+  variantId: string
 ): CartItem[] {
-  return items.filter((item) => item.product.id !== productId);
+  return items.filter(
+    (item) => item.product.variantId !== variantId
+  );
 }
 
 /**
- * Actualiza la cantidad de un producto
+ * Actualiza la cantidad de una variante específica
  */
 export function updateItemQuantity(
   items: CartItem[],
-  productId: string,
+  variantId: string,
   quantity: number
 ): CartItem[] {
   if (quantity <= 0) {
-    return removeFromCart(items, productId);
+    return removeFromCart(items, variantId);
   }
 
   return items.map((item) =>
-    item.product.id === productId
+    item.product.variantId === variantId
       ? { ...item, quantity }
       : item
   );

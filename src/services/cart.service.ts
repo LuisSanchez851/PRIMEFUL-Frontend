@@ -1,6 +1,5 @@
 // src/services/cart.service.ts
-import type { Product } from "../types/product";
-import type { Cart, CartItem } from "../types/cart";
+import type { Cart, CartItem, CartItemProduct } from "../types/cart";
 import {
   addToCart,
   removeFromCart,
@@ -22,8 +21,8 @@ export async function getCart(): Promise<Cart> {
  * Agrega un producto al carrito
  */
 export async function addProductToCart(
-  product: Product,
-  quantity: number = 1
+  product: CartItemProduct,
+  quantity: number
 ): Promise<Cart> {
   cartItems = addToCart(cartItems, product, quantity);
   return Promise.resolve(recalculateCart(cartItems));
@@ -33,9 +32,9 @@ export async function addProductToCart(
  * Elimina un producto del carrito
  */
 export async function removeProductFromCart(
-  productId: string
+  variantId: string
 ): Promise<Cart> {
-  cartItems = removeFromCart(cartItems, productId);
+  cartItems = removeFromCart(cartItems, variantId);
   return Promise.resolve(recalculateCart(cartItems));
 }
 

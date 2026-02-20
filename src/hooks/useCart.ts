@@ -1,6 +1,6 @@
 // src/hooks/useCart.ts
 import { useEffect, useState } from "react";
-import type { Cart } from "../types/cart";
+import type { Cart, CartItemProduct } from "../types/cart";
 import type { Product } from "../types/product";
 import {
   getCart,
@@ -29,10 +29,10 @@ export function useCart() {
     loadCart();
   }, []);
 
-  async function addProduct(product: Product, quantity = 1) {
-    const updatedCart = await addProductToCart(product, quantity);
-    setCart(updatedCart);
-  }
+async function addProduct(product: CartItemProduct, quantity = 1) {
+  const updatedCart = await addProductToCart(product, quantity);
+  setCart(updatedCart);
+}
 
   async function removeProduct(productId: string) {
     const updatedCart = await removeProductFromCart(productId);
