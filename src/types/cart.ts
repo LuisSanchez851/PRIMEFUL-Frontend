@@ -1,11 +1,13 @@
 // src/types/cart.ts
 export interface CartItemProduct {
   id: string;
+  variantId?: string;
   name: string;
+  variantName: string;
   price: number;
   image: string;
   brand?: string;
-  variantId?: string;
+  
 }
 export interface CartItem {
   product: CartItemProduct;
