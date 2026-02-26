@@ -1,6 +1,6 @@
 //src/pages/public/Home.tsx
 import { Link } from "react-router-dom";
-import { ProductCard } from "../../components/product/ProductCard";
+import { CatalogProductCard as ProductCard } from "../../components/product/CatalogProductCard";
 import { useProducts } from "../../hooks/useProducts";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -23,6 +23,7 @@ const heroImages = [
 
 const Home = () => {
   const { products, loading } = useProducts();
+  
   const [currentSlide, setCurrentSlide] = useState(0);
 
   if (loading) {
@@ -46,6 +47,8 @@ const Home = () => {
   const featuredProducts = products
     .filter((p) => p.featured)
     .slice(0, 4);
+
+    console.log("PRODUCTS HOME:", products);
 
   return (
     <div className="space-y-16">
@@ -228,7 +231,7 @@ const Home = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProducts.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

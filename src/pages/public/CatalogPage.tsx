@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { useCatalog } from "../../hooks/useCatalog";
-import { ProductCard } from "../../components/product/ProductCard";
+import { CatalogProductCard } from "../../components/product/CatalogProductCard";
 
 
 export function CatalogPage() {
@@ -135,24 +135,7 @@ export function CatalogPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {products.map((product) => (
-              <div key={product.id} className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-                <img
-                  src={product.main_image}
-                  alt={product.name}
-                  className="h-56 w-full object-cover"
-                />
-                <div className="p-4">
-                  <p className="text-sm text-gray-500">
-                    {product.brand_name}
-                  </p>
-                  <h3 className="font-bold text-lg mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-orange-500 font-bold text-xl">
-                    ${Number(product.min_price).toLocaleString()}
-                  </p>
-                </div>
-              </div>
+              <CatalogProductCard key={product.id} product={product} />
             ))}
           </div>
         )}

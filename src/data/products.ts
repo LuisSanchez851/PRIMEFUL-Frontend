@@ -7,7 +7,7 @@ export const products: Product[] = [
     name: "Whey Protein Gold",
     brand: "Optimum Nutrition",
     category: "proteina",
-    images: ["/images/products/whey-gold.png"],
+    images: ["/images/products/-gold.png"],
     description:
       "Proteína de suero de alta calidad para ganancia muscular.",
     benefits: [
